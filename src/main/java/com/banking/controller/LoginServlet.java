@@ -21,6 +21,11 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
+        if(email == null || password == null || email.isEmpty() || password.isEmpty()) {
+            out.write("{\"error\":\"Email and password required\"}");
+            return;
+        }
+
         try {
             UserService service = new UserService();
             User user = service.login(email, password);
