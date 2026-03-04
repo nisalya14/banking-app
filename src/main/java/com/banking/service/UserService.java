@@ -19,11 +19,19 @@ public class UserService {
         }
 
         try (Connection conn = DBConnection.getConnection()) {
+
+            // Check duplicate email
+            User existingUser = userDAO.getUserByEmail(conn, email);
+            if (existingUser != null) {
+                throw new IllegalArgumentException("Email already registered");
+            }
+
+            //  Hash password
             String hashedPassword = PasswordUtil.hashPassword(password);
+
             userDAO.registerUser(conn, name, email, hashedPassword, role);
         }
     }
-
     // Login user
     public User login(String email, String password) throws Exception {
 

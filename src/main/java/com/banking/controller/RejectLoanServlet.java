@@ -20,10 +20,13 @@ public class RejectLoanServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
 
-        if (session == null || !"ADMIN".equals(session.getAttribute("role"))) {
-            out.println("{\"error\":\"Unauthorized - Admin Only\"}");
-            return;
-        }
+        if (session == null || 
+        	    session.getAttribute("role") == null || 
+        	    !"ADMIN".equalsIgnoreCase(session.getAttribute("role").toString())) {
+        	    
+        	    out.println("{\"error\":\"Unauthorized - Admin Only\"}");
+        	    return;
+        	}
 
         String loanIdParam = request.getParameter("loan_id");
 

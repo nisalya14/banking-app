@@ -32,7 +32,7 @@ public class TransactionServlet extends HttpServlet {
 
         try {
         	
-            // ✅ 1. Check Session
+            //  Check Session
           
 
             if (session == null ||
@@ -44,7 +44,7 @@ public class TransactionServlet extends HttpServlet {
                 return;
             }
 
-            // ✅ 2. Validate Required Params
+            //  Validate Required Params
             String accountIdParam = request.getParameter("account_id");
             String typeParam = request.getParameter("transaction_type");
 
@@ -57,7 +57,7 @@ public class TransactionServlet extends HttpServlet {
 
             int accountId = Integer.parseInt(accountIdParam);
 
-            // ✅ 3. Pagination Defaults
+            // Pagination Defaults
             int page = request.getParameter("page") == null
                     ? 1
                     : Integer.parseInt(request.getParameter("page"));
@@ -73,11 +73,11 @@ public class TransactionServlet extends HttpServlet {
                 return;
             }
 
-            // ✅ 4. Call Service
+            // Call Service
             List<Transaction> transactions =
                     service.fetchTransactions(accountId, typeParam, page, size);
 
-            // ✅ 5. Return Success Response
+            // Return Success Response
             out.println(gson.toJson(
                     Map.of(
                             "page", page,

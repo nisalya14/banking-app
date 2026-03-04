@@ -24,8 +24,6 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
         PrintWriter out = response.getWriter();
         Map<String, String> result = new HashMap<>();
 
@@ -36,12 +34,6 @@ public class RegisterServlet extends HttpServlet {
             String password = request.getParameter("password");
             String role = request.getParameter("role");
 
-            // Basic null check
-            if (name == null || email == null || password == null) {
-                throw new IllegalArgumentException("All fields are required");
-            }
-
-            // Validation
             if (!ValidationUtil.isValidName(name)) {
                 throw new IllegalArgumentException("Invalid Name");
             }
