@@ -10,7 +10,7 @@ public class EmailUtil {
     public static void sendEmail(String toEmail, String userName) throws Exception {
 
         final String fromEmail = "chandrannisalya@gmail.com";
-        final String password = "Nisalya11*";
+        final String password = "*****";
 
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
