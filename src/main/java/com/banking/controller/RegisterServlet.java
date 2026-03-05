@@ -56,6 +56,7 @@ public class RegisterServlet extends HttpServlet {
 
             response.setStatus(HttpServletResponse.SC_CREATED);
             result.put("message", "User Registered Successfully");
+          //  EmailUtil.sendEmail(userEmail, userName)
 
         } catch (IllegalArgumentException e) {
 
